@@ -1,0 +1,22 @@
+Best practices related to Terraform. 
+ 1. Send all the state file over S3. 
+ 2. Use dynmoDB for lock state files. 
+
+Best practices related to AWS Infra. 
+ 1. Do not launch your infra into Default VPC. 
+ 2. Create a seprate VPC for both prod and nonprod environment. 
+ 3. Launch your EKS cluster into private subnets. 
+ 4. Don't expose your API server endpoint publicaly. 
+
+Best practices related to security. 
+ 1. Always allow inbound traffic from securit group ID only. 
+ 2. Don't open ports for everyone. 
+ 3. Always launch your applications, DB servers into private subnets only. 
+ 4. Whitelist siteshield IP on ALB level. So that no one can access our applications directly. 
+ 5. Restrict incoming and outgoing traffic on NACL level. 
+
+Best practices related to EKS. 
+ 1. Always expose your services as ClusterIP only. 
+ 2. For internal communications between application choose service DNS name. 
+ 
+

@@ -1,0 +1,54 @@
+Installing SonarQube
+You can install SonarQube in multiple ways and you can visit the below page to install based on your operating system.
+
+https://docs.sonarqube.org/latest/setup/get-started-2-minutes/
+I used Docker to install SonarQube on my local machine. Make sure you install the latest Docker Desktop from this page.
+
+https://hub.docker.com/editions/community/docker-ce-desktop-mac
+You need to run the following command to start the SonarQube on port 9000.
+
+docker run -d --name sonarqube -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true -p 9000:9000 sonarqube:latest
+
+You can list the docker container using docker ps command. 
+
+Once started and you can hit the URL http://localhost:9000/
+
+
+SonarQube
+Running Analysis
+First, we need to create a project in the SonarQube. Click on the Manually tab. 
+
+
+Creating a project
+Let’s give the project display name and the key. 
+
+
+Display Name and Key
+On the next screen, you need to let SonarQube know where you want it to analyze the repository. Let’s select Locally.
+
+You need to generate the token.
+
+Once you go to the next screen you need to select the build. Since we are running analysis on the NodeJS API with configuration, let’ select Other.
+
+
+Selecting the right tool
+You need to download scanner before running this command. Let’s download the scanner based on your operating system.
+
+
+Downloading Scanner
+You should add the path of the above downloaded sonar-scanner bin folder to the PATH. Let’s open /etc/paths with the following command and add the variable.
+
+sudo vi /etc/paths
+Once done, you can run the following command from the Sonar page.
+
+sonar-scanner \
+  -Dsonar.projectKey=todoapp \
+  -Dsonar.sources=. \
+  -Dsonar.host.url=http://localhost:9000 \
+  -Dsonar.login=3a874f9b17b1ffcd16e4ffda51f3ae0454d9f046
+Let’s copy the command and run it at the root of the above-cloned project as below.
+
+
+Running the command
+When the build is successful, you can see the SonarQube screen automatically refreshed with the analysis.
+
